@@ -8,10 +8,11 @@
     <!-- AVATAR -->
     <div class="col-md-4">
         <div class="student-card text-center">
-            <img src="{{ url_for('static', filename='uploads/' + user.avatar) }}"
-                 class="rounded-circle mb-3"
-                 width="160" height="160"
-                 style="object-fit: cover">
+            <img src="{{ current_user.avatar }}"
+             class="rounded-circle"
+             width="160" height="160"
+             style="object-fit: cover;">
+
 
             <form method="post" enctype="multipart/form-data">
                 <input type="file" name="avatar" class="form-control mb-2">

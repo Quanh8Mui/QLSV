@@ -1,4 +1,5 @@
 import os
+import cloudinary
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
@@ -12,6 +13,13 @@ class Config:
     UPLOAD_FOLDER = os.path.join(BASE_DIR, "static/uploads")
     ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg"}
     MAX_CONTENT_LENGTH = 2 * 1024 * 1024  # 2MB
+
+    cloudinary.config(
+        cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
+        api_key=os.getenv("CLOUDINARY_API_KEY"),
+        api_secret=os.getenv("CLOUDINARY_API_SECRET"),
+        secure=True
+    )
 
 
 

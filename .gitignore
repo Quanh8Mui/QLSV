@@ -6,8 +6,5 @@ __pycache__/
 .idea/
 .vscode/
 
-# Uploads
-static/uploads/
-
 # Env
 .env

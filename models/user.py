@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
     avatar = db.Column(
         db.String(200),
         nullable=False,
-        default="default.png"
+        default="https://res.cloudinary.com/xxx/default.png"
     )
 
     must_change_password = db.Column(
