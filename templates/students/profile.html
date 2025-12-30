@@ -9,14 +9,12 @@
     <div class="col-md-4">
         <div class="student-card text-center">
             <img
-              src="{{ current_user.avatar or 'https://res.cloudinary.com/<cloud_name>/image/upload/default.png' }}"
+              src="{{ current_user.avatar or 'https://res.cloudinary.com/dcffaxl2y/image/upload/v1767123181/default.jpg' }}"
               class="rounded-circle"
               width="160"
               height="160"
               style="object-fit: cover;"
             >
-
-
 
             <form method="post" enctype="multipart/form-data">
                 <input type="file" name="avatar" class="form-control mb-2">
