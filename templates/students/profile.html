@@ -8,17 +8,12 @@
     <!-- AVATAR -->
     <div class="col-md-4">
         <div class="student-card text-center">
-            <img
-              src="{{ current_user.avatar or 'https://res.cloudinary.com/dcffaxl2y/image/upload/v1767123181/default.jpg' }}"
-              class="rounded-circle"
-              width="160"
-              height="160"
-              style="object-fit: cover;"
-            >
+            <img src="{{ url_for('static', filename='uploads/' + user.avatar) }}"
+                 class="rounded-circle mb-3"
+                 width="160" height="160"
+                 style="object-fit: cover">
 
-            <form method="post"
-              action="{{ url_for('student.change_avatar') }}"
-              enctype="multipart/form-data">
+            <form method="post" enctype="multipart/form-data">
                 <input type="file" name="avatar" class="form-control mb-2">
                 <button class="btn btn-primary btn-sm w-100">
                     <i class="bi bi-image"></i> Đổi ảnh
