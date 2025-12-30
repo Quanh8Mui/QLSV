@@ -1,0 +1,48 @@
+{% extends "base_auth.html" %}
+{% block title %}Đăng nhập{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-4">
+    <div class="card shadow">
+      <div class="card-body">
+
+        <h4 class="text-center mb-4">Đăng nhập hệ thống</h4>
+
+        <form method="post">
+          <div class="mb-3">
+            <label class="form-label">Tài khoản / MSSV</label>
+            <input
+              type="text"
+              name="username"
+              class="form-control"
+              placeholder="VD: sv9 hoặc SV21CNTT0001"
+              required
+              autofocus
+            >
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Mật khẩu</label>
+            <input
+              type="password"
+              name="password"
+              class="form-control"
+              required
+            >
+          </div>
+
+          <button class="btn btn-primary w-100">
+            Đăng nhập
+          </button>
+        </form>
+
+        <div class="text-center mt-3">
+          <a href="/forgot-password">Quên mật khẩu?</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

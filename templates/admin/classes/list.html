@@ -1,0 +1,82 @@
+{% extends "base_admin.html" %}
+{% block title %}Quản lý lớp{% endblock %}
+
+{% block content %}
+<h3>Quản lý lớp</h3>
+
+<a href="/admin/classes/add" class="btn btn-primary mb-3">
+  ➕ Thêm lớp
+</a>
+
+<form method="get" class="row g-2 mb-3">
+  <div class="col-md-3">
+    <select name="faculty_id" class="form-select">
+      <option value="">-- Tất cả khoa --</option>
+      {% for f in faculties %}
+        <option value="{{ f.id }}" {% if faculty_id == f.id %}selected{% endif %}>
+          {{ f.name }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="col-md-3">
+    <select name="major_id" class="form-select">
+      <option value="">-- Tất cả ngành --</option>
+      {% for m in majors %}
+        <option value="{{ m.id }}" {% if major_id == m.id %}selected{% endif %}>
+          {{ m.name }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="col-md-3">
+    <select name="course_id" class="form-select">
+      <option value="">-- Tất cả khoá --</option>
+      {% for c in courses %}
+        <option value="{{ c.id }}" {% if course_id == c.id %}selected{% endif %}>
+          {{ c.code }} ({{ c.start_year }})
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="col-md-3 d-flex gap-2">
+    <button class="btn btn-success w-100">Lọc</button>
+    <a href="/admin/classes" class="btn btn-secondary w-100">Reset</a>
+  </div>
+</form>
+
+
+<table class="table table-bordered table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th>STT</th>
+      <th>Tên lớp</th>
+      <th>Ngành</th>
+      <th>Khoa</th>
+      <th width="160">Hành động</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for c in classes %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ c.name }}</td>
+      <td>{{ c.major.name }}</td>
+      <td>{{ c.major.faculty.name }}</td>
+      <td>
+        <a href="/admin/classes/edit/{{ c.id }}"
+           class="btn btn-sm btn-warning">Sửa</a>
+        <a href="/admin/classes/delete/{{ c.id }}"
+           class="btn btn-sm btn-danger"
+           onclick="return confirm('Xoá lớp này?')">
+           Xoá
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,55 @@
+/* ====== ADMIN LAYOUT ====== */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  background: #212529;
+  padding: 20px;
+}
+
+.sidebar a {
+  display: block;
+  color: #ddd;
+  padding: 10px;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.sidebar a:hover {
+  background: #0d6efd;
+  color: #fff;
+}
+
+.sidebar .logout {
+  background: #dc3545;
+  color: white;
+  text-align: center;
+}
+
+/*  CONTENT  */
+.content {
+  flex: 1;
+  padding: 30px;
+  background: #f8f9fa;
+}
+
+/*  TABLE */
+table th {
+  background: #212529;
+  color: white;
+}
+
+/* CARD  */
+.card {
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* button */
+.btn {
+  border-radius: 6px;
+}

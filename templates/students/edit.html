@@ -1,0 +1,45 @@
+{% extends "base_admin.html" %}
+{% block title %}Sửa sinh viên{% endblock %}
+
+{% block content %}
+<h3 class="mb-4">Sửa sinh viên</h3>
+
+<form method="post" class="card shadow p-4">
+
+  <!-- TÊN -->
+  <div class="mb-3">
+    <label class="form-label">Tên sinh viên</label>
+    <input name="name" value="{{ student.name }}" class="form-control" required>
+  </div>
+
+  <!-- NGÀY SINH -->
+  <div class="mb-3">
+    <label class="form-label">Ngày sinh</label>
+    <input type="date"
+           name="date_of_birth"
+           value="{{ student.date_of_birth.strftime('%Y-%m-%d') }}"
+           class="form-control"
+           required>
+  </div>
+
+  <!-- LỚP -->
+  <div class="mb-3">
+    <label class="form-label">Lớp</label>
+    <select name="class_id" class="form-select" required>
+      {% for c in classes %}
+        <option value="{{ c.id }}"
+          {% if c.id == student.class_id %}selected{% endif %}>
+          {{ c.name }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <!-- BUTTON -->
+  <div class="d-flex gap-2">
+    <button class="btn btn-warning">💾 Cập nhật</button>
+    <a href="/admin/students" class="btn btn-secondary">Huỷ</a>
+  </div>
+
+</form>
+{% endblock %}

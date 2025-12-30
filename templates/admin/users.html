@@ -1,0 +1,22 @@
+{% extends "base_admin.html" %}
+
+{% block title %}Quản lý User{% endblock %}
+
+{% block content %}
+<h2>Quản lý User</h2>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Role</th>
+    </tr>
+    {% for u in users %}
+    <tr>
+        <td>{{ u.id }}</td>
+        <td>{{ u.username }}</td>
+        <td>{{ u.role }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

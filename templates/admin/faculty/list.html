@@ -1,0 +1,37 @@
+{% extends "base_admin.html" %}
+{% block title %}Quản lý khoa{% endblock %}
+
+{% block content %}
+<h3 class="mb-3">Quản lý khoa</h3>
+
+<a href="/admin/faculties/add" class="btn btn-primary mb-3">
+  ➕ Thêm khoa
+</a>
+
+<table class="table table-bordered table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th>STT</th>
+      <th>Tên khoa</th>
+      <th width="180">Hành động</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for f in faculties %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ f.name }}</td>
+      <td>
+        <a href="/admin/faculties/edit/{{ f.id }}"
+           class="btn btn-sm btn-warning">Sửa</a>
+        <a href="/admin/faculties/delete/{{ f.id }}"
+           class="btn btn-sm btn-danger"
+           onclick="return confirm('Xoá khoa này?')">
+           Xoá
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

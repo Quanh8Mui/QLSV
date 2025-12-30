@@ -1,0 +1,35 @@
+{% extends "base_admin.html" %}
+{% block title %}Chi tiết sinh viên{% endblock %}
+
+{% block content %}
+<h3 class="mb-4">Chi tiết sinh viên</h3>
+
+<div class="card shadow p-4 mb-4">
+  <h5 class="mb-3">📘 Thông tin sinh viên</h5>
+
+  <p><strong>MSSV:</strong> {{ student.mssv }}</p>
+  <p><strong>Họ tên:</strong> {{ student.name }}</p>
+  <p><strong>Ngày sinh:</strong> {{ student.date_of_birth.strftime('%d/%m/%Y') }}</p>
+  <p><strong>Lớp:</strong> {{ student.class_model.name }}</p>
+  <p><strong>Ngành:</strong> {{ student.class_model.major.name }}</p>
+  <p><strong>Khoa:</strong> {{ student.class_model.major.faculty.name }}</p>
+</div>
+
+<div class="card shadow p-4">
+  <h5 class="mb-3">👤 Thông tin tài khoản</h5>
+
+  {% if student.user %}
+    <p><strong>Username:</strong> {{ student.user.username }}</p>
+    <p><strong>Email:</strong> {{ student.user.email }}</p>
+    <p><strong>Role:</strong> {{ student.user.role }}</p>
+  {% else %}
+    <p class="text-muted">Sinh viên chưa được cấp tài khoản</p>
+  {% endif %}
+</div>
+
+<div class="mt-4">
+  <a href="/admin/students" class="btn btn-secondary">
+    ⬅ Quay lại
+  </a>
+</div>
+{% endblock %}

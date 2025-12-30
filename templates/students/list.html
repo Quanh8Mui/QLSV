@@ -1,0 +1,160 @@
+{% extends "base_admin.html" %}
+{% block title %}Quản lý sinh viên{% endblock %}
+
+{% block content %}
+<h3 class="mb-3">Quản lý sinh viên</h3>
+
+<div class="d-flex justify-content-between mb-3">
+  <a href="/admin/students/add" class="btn btn-primary">
+    ➕ Thêm sinh viên
+  </a>
+
+  <button form="bulkForm"
+          class="btn btn-success"
+          onclick="return confirm('Cấp tài khoản cho các sinh viên đã chọn?')">
+    Cấp tài khoản đã chọn
+  </button>
+</div>
+
+<!-- FILTER -->
+<form method="get" class="row g-2 mb-4">
+  <div class="col-md-3">
+    <select name="faculty_id" class="form-select">
+      <option value="">-- Tất cả khoa --</option>
+      {% for f in faculties %}
+        <option value="{{ f.id }}" {% if faculty_id == f.id %}selected{% endif %}>
+          {{ f.name }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="col-md-3">
+    <select name="major_id" class="form-select">
+      <option value="">-- Tất cả ngành --</option>
+      {% for m in majors %}
+        <option value="{{ m.id }}" {% if major_id == m.id %}selected{% endif %}>
+          {{ m.name }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="col-md-3">
+    <select name="class_id" class="form-select">
+      <option value="">-- Tất cả lớp --</option>
+      {% for c in classes %}
+        <option value="{{ c.id }}" {% if class_id == c.id %}selected{% endif %}>
+          {{ c.name }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="col-md-3 d-flex gap-2">
+    <button class="btn btn-success w-100">Lọc</button>
+    <a href="/admin/students" class="btn btn-secondary w-100">Reset</a>
+  </div>
+</form>
+
+<!-- TABLE + BULK FORM -->
+<form id="bulkForm"
+      method="post"
+      action="/admin/students/create-account-bulk">
+
+<div class="table-responsive">
+<table class="table table-bordered table-hover align-middle">
+  <thead class="table-dark">
+    <tr>
+      <th width="40">
+        <input type="checkbox" id="checkAll">
+      </th>
+      <th>STT</th>
+      <th>MSSV</th>
+      <th>Tên</th>
+      <th>Ngày sinh</th>
+      <th>Lớp</th>
+      <th>Ngành</th>
+      <th>Khoa</th>
+      <th>Tài khoản</th>
+      <th width="260">Hành động</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  {% for s in students %}
+    <tr>
+      <!-- CHECKBOX -->
+      <td class="text-center">
+        {% if not s.user_id %}
+          <input type="checkbox"
+                 name="student_ids"
+                 value="{{ s.id }}"
+                 class="row-check">
+        {% endif %}
+      </td>
+
+      <td>{{ loop.index }}</td>
+      <td>{{ s.mssv }}</td>
+      <td>{{ s.name }}</td>
+      <td>{{ s.date_of_birth.strftime('%d/%m/%Y') }}</td>
+      <td>{{ s.class_model.name }}</td>
+      <td>{{ s.class_model.major.name }}</td>
+      <td>{{ s.class_model.major.faculty.name }}</td>
+
+      <!-- ACCOUNT STATUS -->
+      <td>
+        {% if s.user_id %}
+          <span class="badge bg-success">Đã có</span><br>
+          <small class="text-muted">{{ s.user.username }}</small>
+        {% else %}
+          <span class="badge bg-warning text-dark">Chưa có</span>
+        {% endif %}
+      </td>
+
+      <!-- ACTION -->
+      <td>
+        <a href="{{ url_for('admin.view_student', id=s.id) }}"
+            class="btn btn-sm btn-info mb-1">
+            Xem
+        </a>
+
+        <a href="/admin/students/edit/{{ s.id }}"
+           class="btn btn-sm btn-warning mb-1">
+           Sửa
+        </a>
+
+        <a href="/admin/students/delete/{{ s.id }}"
+           class="btn btn-sm btn-danger mb-1"
+           onclick="return confirm('Xoá sinh viên này?')">
+           Xoá
+        </a>
+
+        {% if not s.user_id %}
+          <a
+             class="btn btn-sm btn-success mb-1">
+             Chưa cấp TK
+          </a>
+        {% else %}
+          <button class="btn btn-sm btn-secondary mb-1" disabled>
+            Đã cấp TK
+          </button>
+        {% endif %}
+      </td>
+    </tr>
+  {% else %}
+    <tr>
+      <td colspan="9" class="text-center text-muted">
+        Không có sinh viên nào
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+</form>
+
+<!-- JS -->
+<script src="{{ url_for('static', filename='js/student_bulk.js') }}"></script>
+
+{% endblock %}

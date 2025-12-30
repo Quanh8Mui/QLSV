@@ -1,0 +1,26 @@
+{% extends "base_admin.html" %}
+{% block title %}Thêm ngành{% endblock %}
+
+{% block content %}
+<h3>Thêm ngành</h3>
+
+<form method="post">
+  <div class="mb-3">
+    <label>Tên ngành</label>
+    <input name="name" class="form-control" required>
+  </div>
+
+  <div class="mb-3">
+    <label>Khoa</label>
+    <select name="faculty_id" class="form-select" required>
+      <option value="">-- Chọn khoa --</option>
+      {% for f in faculties %}
+        <option value="{{ f.id }}">{{ f.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <button class="btn btn-success">Lưu</button>
+  <a href="/admin/majors" class="btn btn-secondary">Quay lại</a>
+</form>
+{% endblock %}

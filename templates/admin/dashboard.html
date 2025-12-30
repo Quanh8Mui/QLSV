@@ -1,0 +1,53 @@
+{% extends "base_admin.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Admin Dashboard</h2>
+
+<div class="row g-4">
+  <div class="col-md-3">
+    <a href="{{ url_for('admin.student_list') }}" class="text-decoration-none">
+      <div class="card text-white bg-primary shadow">
+        <div class="card-body text-center">
+          <h4>Sinh viên</h4>
+          <p class="fs-3">{{ student_count }}</p>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-md-3">
+    <a href="{{ url_for('admin_class.class_list') }}" class="text-decoration-none">
+      <div class="card text-white bg-success shadow">
+        <div class="card-body text-center">
+          <h4>Lớp</h4>
+          <p class="fs-3">{{ class_count }}</p>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-md-3">
+    <a href="{{ url_for('admin_major.major_list') }}" class="text-decoration-none">
+      <div class="card text-dark bg-warning shadow">
+        <div class="card-body text-center">
+          <h4>Ngành</h4>
+          <p class="fs-3">{{ major_count }}</p>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-md-3">
+    <a href="{{ url_for('faculty.faculty_list') }}" class="text-decoration-none">
+      <div class="card text-white bg-dark shadow">
+        <div class="card-body text-center">
+          <h4>Khoa</h4>
+          <p class="fs-3">{{ faculty_count }}</p>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base_admin.html" %}
+{% block title %}Sửa ngành{% endblock %}
+
+{% block content %}
+<h3>Sửa ngành</h3>
+
+<form method="post">
+  <div class="mb-3">
+    <label>Tên ngành</label>
+    <input name="name" class="form-control"
+           value="{{ major.name }}" required>
+  </div>
+
+  <div class="mb-3">
+    <label>Khoa</label>
+    <select name="faculty_id" class="form-select">
+      {% for f in faculties %}
+        <option value="{{ f.id }}"
+          {% if major.faculty_id == f.id %}selected{% endif %}>
+          {{ f.name }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <button class="btn btn-success">Cập nhật</button>
+  <a href="/admin/majors" class="btn btn-secondary">Quay lại</a>
+</form>
+{% endblock %}

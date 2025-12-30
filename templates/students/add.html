@@ -1,0 +1,63 @@
+{% extends "base_admin.html" %}
+{% block title %}Thêm sinh viên{% endblock %}
+
+{% block content %}
+<h3 class="mb-4">Thêm sinh viên</h3>
+
+<form method="post" class="card shadow p-4">
+
+  <div class="alert alert-info">
+    Mã số sinh viên sẽ được sinh tự động theo:
+    <strong>Khoá – Ngành – Số thứ tự</strong>
+  </div>
+
+  <!-- TÊN -->
+  <div class="mb-3">
+    <label class="form-label">Tên sinh viên</label>
+    <input name="name" class="form-control" required>
+  </div>
+
+  <!-- NGÀY SINH -->
+  <div class="mb-3">
+    <label class="form-label">Ngày sinh</label>
+    <input type="date" name="date_of_birth" class="form-control" required>
+  </div>
+
+  <!-- KHOA -->
+  <div class="mb-3">
+    <label class="form-label">Khoa</label>
+    <select id="faculty" class="form-select">
+      <option value="">-- Chọn khoa --</option>
+      {% for f in faculties %}
+        <option value="{{ f.id }}">{{ f.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <!-- NGÀNH -->
+  <div class="mb-3">
+    <label class="form-label">Ngành</label>
+    <select id="major" class="form-select">
+      <option value="">-- Chọn ngành --</option>
+    </select>
+  </div>
+
+  <!-- LỚP -->
+  <div class="mb-3">
+    <label class="form-label">Lớp</label>
+    <select name="class_id" id="class" class="form-select" required>
+      <option value="">-- Chọn lớp --</option>
+    </select>
+  </div>
+
+  <!-- BUTTON -->
+  <div class="d-flex gap-2">
+    <button class="btn btn-primary">➕ Thêm</button>
+    <a href="/admin/students" class="btn btn-secondary">Huỷ</a>
+  </div>
+
+</form>
+
+<!-- JS dropdown -->
+<script src="{{ url_for('static', filename='js/dropdown.js') }}"></script>
+{% endblock %}

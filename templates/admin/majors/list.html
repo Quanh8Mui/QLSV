@@ -1,0 +1,38 @@
+{% extends "base_admin.html" %}
+{% block title %}Quản lý ngành{% endblock %}
+
+{% block content %}
+<h3>Quản lý ngành</h3>
+
+<a href="/admin/majors/add" class="btn btn-primary mb-3">
+  ➕ Thêm ngành
+</a>
+
+<table class="table table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th>STT</th>
+      <th>Tên ngành</th>
+      <th>Khoa</th>
+      <th width="160">Hành động</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for m in majors %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ m.name }}</td>
+      <td>{{ m.faculty.name }}</td>
+      <td>
+        <a href="/admin/majors/edit/{{ m.id }}" class="btn btn-sm btn-warning">Sửa</a>
+        <a href="/admin/majors/delete/{{ m.id }}"
+           class="btn btn-sm btn-danger"
+           onclick="return confirm('Xoá ngành này?')">
+           Xoá
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

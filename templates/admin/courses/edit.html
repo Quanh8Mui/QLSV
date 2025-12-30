@@ -1,0 +1,21 @@
+{% extends "base_admin.html" %}
+{% block title %}Sửa khóa{% endblock %}
+
+{% block content %}
+<h3>Sửa khóa học</h3>
+
+<form method="post" class="w-50">
+  <div class="mb-3">
+    <label>Mã khóa</label>
+    <input name="code" value="{{ course.code }}" class="form-control" required>
+  </div>
+
+  <div class="mb-3">
+    <label>Năm bắt đầu</label>
+    <input name="start_year" value="{{ course.start_year }}" type="number" class="form-control" required>
+  </div>
+
+  <button class="btn btn-success">Cập nhật</button>
+  <a href="/admin/courses" class="btn btn-secondary">Quay lại</a>
+</form>
+{% endblock %}

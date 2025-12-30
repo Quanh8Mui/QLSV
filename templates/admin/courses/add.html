@@ -1,0 +1,26 @@
+{% extends "base_admin.html" %}
+{% block title %}Thêm khóa{% endblock %}
+
+{% block content %}
+<h3>Thêm khóa học</h3>
+
+<div class="alert alert-info">
+  Mã khóa và tên khóa sẽ tự động sinh theo năm bắt đầu
+</div>
+
+<form method="post">
+  <div class="mb-3">
+    <label>Năm bắt đầu</label>
+    <input
+      type="number"
+      name="start_year"
+      class="form-control"
+      placeholder="VD: 2025"
+      required
+    >
+  </div>
+
+  <button class="btn btn-success">Lưu</button>
+  <a href="/admin/courses" class="btn btn-secondary">Quay lại</a>
+</form>
+{% endblock %}

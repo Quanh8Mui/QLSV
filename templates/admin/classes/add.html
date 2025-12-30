@@ -1,0 +1,49 @@
+{% extends "base_admin.html" %}
+{% block title %}Thêm lớp{% endblock %}
+
+{% block content %}
+<h3>Thêm lớp</h3>
+
+<form method="post">
+<!--  <div class="mb-3">-->
+<!--    <label>Tên lớp</label>-->
+<!--    <input name="name" class="form-control"-->
+<!--           placeholder="VD: CNTT-K24-01"-->
+<!--           required>-->
+<!--  </div>-->
+
+  <div class="alert alert-info">
+    Tên lớp sẽ được sinh tự động theo:
+    <strong>Ngành – Khoá – Số thứ tự</strong>
+  </div>
+
+  <div class="mb-3">
+    <label>Ngành</label>
+    <select name="major_id" class="form-select" required>
+      <option value="">-- Chọn ngành --</option>
+      {% for m in majors %}
+        <option value="{{ m.id }}">
+          {{ m.name }} ({{ m.faculty.name }})
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label>Khoá học</label>
+    <select name="course_id" class="form-select" required>
+      <option value="">-- Chọn khoá --</option>
+      {% for c in courses %}
+        <option value="{{ c.id }}">
+          {% if class_obj and class_obj.course_id == c.id %}selected{% endif %}>
+          {{ c.name }} ({{ c.start_year }})
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+
+
+  <button class="btn btn-success">Lưu</button>
+  <a href="/admin/classes" class="btn btn-secondary">Quay lại</a>
+</form>
+{% endblock %}
