@@ -18,8 +18,7 @@ class User(db.Model, UserMixin):
     phone = db.Column(db.String(20), nullable=True)
     avatar = db.Column(
         db.String(200),
-        nullable=False,
-        default="https://res.cloudinary.com/xxx/default.png"
+        nullable=False
     )
 
     must_change_password = db.Column(

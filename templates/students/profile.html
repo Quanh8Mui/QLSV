@@ -8,10 +8,14 @@
     <!-- AVATAR -->
     <div class="col-md-4">
         <div class="student-card text-center">
-            <img src="{{ current_user.avatar }}"
-             class="rounded-circle"
-             width="160" height="160"
-             style="object-fit: cover;">
+            <img
+              src="{{ current_user.avatar or 'https://res.cloudinary.com/<cloud_name>/image/upload/default.png' }}"
+              class="rounded-circle"
+              width="160"
+              height="160"
+              style="object-fit: cover;"
+            >
+
 
 
             <form method="post" enctype="multipart/form-data">
